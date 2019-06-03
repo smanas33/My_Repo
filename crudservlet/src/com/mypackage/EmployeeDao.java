@@ -65,4 +65,20 @@ public class EmployeeDao {
 		return status;
 	}
 
+	public static int delete(int id) {
+		int status = 0;
+		try {
+			connection = EmployeeDao.getConnection();
+			PreparedStatement statement = connection
+					.prepareStatement("delete from user905 where id = ?");
+			statement.setInt(1, id);
+			status = statement.executeUpdate();
+
+			connection.close();
+		} catch (Exception exception) {
+			System.out.println(exception);
+		}
+		return status;
+	}
+
 }
