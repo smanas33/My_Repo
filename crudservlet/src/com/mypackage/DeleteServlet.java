@@ -14,12 +14,9 @@ public class DeleteServlet extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String sid =request.getParameter("id");
+		int id = Integer.parseInt(sid);
+		EmployeeDao.delete(id);
+		response.sendRedirect("ViewServlet");
 	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 }
