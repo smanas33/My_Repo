@@ -26,7 +26,7 @@ public class EmployeeDao {
 			connection = EmployeeDao.getConnection();
 			PreparedStatement statement = connection.prepareStatement("Select * from user905");
 			ResultSet resultSet = statement.executeQuery();
-			
+
 			while (resultSet.next()) {
 				Employee employee = new Employee();
 				employee.setId(resultSet.getInt(1));
@@ -37,15 +37,32 @@ public class EmployeeDao {
 				employees.add(employee);
 			}
 			connection.close();
-			
+
 		} catch (Exception exception) {
 			System.out.println(exception);
 		}
 		return employees;
 	}
 
-	public static int save() {
-		return 0;
+	public static int save(Employee employee) {
+		int status = 0;
+
+		try {
+			connection = EmployeeDao.getConnection();
+			PreparedStatement statement = connection
+					.prepareStatement("insert into user905(username, password, email, country) values(?,?,?,?)");
+			statement.setString(1, employee.getUserName());
+			statement.setString(2, employee.getPassword());
+			statement.setString(3, employee.getEmail());
+			statement.setString(4, employee.getCountry());
+
+			status = statement.executeUpdate();
+			connection.close();
+		} catch (Exception exception) {
+			System.out.println(exception);
+		}
+
+		return status;
 	}
 
 }
