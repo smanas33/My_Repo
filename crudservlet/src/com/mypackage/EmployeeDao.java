@@ -44,4 +44,8 @@ public class EmployeeDao {
 		return employees;
 	}
 
+	public static int save() {
+		return 0;
+	}
+
 }
