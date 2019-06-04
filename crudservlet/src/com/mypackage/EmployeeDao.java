@@ -105,7 +105,6 @@ public class EmployeeDao {
 	public static int update(Employee employee) {
 		int status = 0;
 		try {
-			System.out.println("Pass: "+employee.getPassword());
 			connection = EmployeeDao.getConnection();
 			PreparedStatement statement = connection
 					.prepareStatement("update user905 set username=?, password=?, email=?, country= ? where id = ?");
