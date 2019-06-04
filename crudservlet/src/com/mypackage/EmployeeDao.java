@@ -69,8 +69,7 @@ public class EmployeeDao {
 		int status = 0;
 		try {
 			connection = EmployeeDao.getConnection();
-			PreparedStatement statement = connection
-					.prepareStatement("delete from user905 where id = ?");
+			PreparedStatement statement = connection.prepareStatement("delete from user905 where id = ?");
 			statement.setInt(1, id);
 			status = statement.executeUpdate();
 
@@ -81,4 +80,48 @@ public class EmployeeDao {
 		return status;
 	}
 
+	public static Employee getEmployeeById(int id) {
+		Employee employee = new Employee();
+		try {
+			connection = EmployeeDao.getConnection();
+			PreparedStatement statement = connection.prepareStatement("select * from user905 where id = ?");
+			statement.setInt(1, id);
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {
+				employee.setId(rs.getInt(1));
+				employee.setUserName(rs.getString(2));
+				employee.setPassword(rs.getString(3));
+				employee.setEmail(rs.getString(4));
+				employee.setCountry(rs.getString(5));
+			}
+
+			connection.close();
+		} catch (Exception exception) {
+			System.out.println(exception);
+		}
+		return employee;
+	}
+
+	public static int update(Employee employee) {
+		int status = 0;
+		try {
+			System.out.println("Pass: "+employee.getPassword());
+			connection = EmployeeDao.getConnection();
+			PreparedStatement statement = connection
+					.prepareStatement("update user905 set username=?, password=?, email=?, country= ? where id = ?");
+
+			statement.setString(1, employee.getUserName());
+			statement.setString(2, employee.getPassword());
+			statement.setString(3, employee.getEmail());
+			statement.setString(4, employee.getCountry());
+			statement.setInt(5, employee.getId());
+
+			status = statement.executeUpdate();
+
+			connection.close();
+		} catch (Exception exception) {
+			System.out.println(exception);
+		}
+		return status;
+	}
 }
