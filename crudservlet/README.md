@@ -22,7 +22,7 @@ Servlet, Tomcat 8, Mysql 5.x
 
 6) Run the project and test your crud project
 
-> Note that I'm using here _ _ Servlet3 _ _ annotation based, there is no deployment descriptor(web.xml). You can do as your servlet version.
+> Note that I'm using here * * Servlet3 * * annotation based, there is no deployment descriptor(web.xml). You can do as your servlet version.
 
 # Project Structure
 
